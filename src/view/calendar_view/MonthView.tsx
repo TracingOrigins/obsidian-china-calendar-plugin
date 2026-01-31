@@ -1,4 +1,4 @@
-import {MouseEvent, useContext} from "react";
+import {MouseEvent, useContext, useRef} from "react";
 import {DateTime} from "luxon";
 import {HolidayUtil} from "lunar-typescript";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
@@ -151,21 +151,55 @@ function DayItem({
     </div>
 }
 
-function WeekIndexItem({targetDay}: { targetDay: DateTime }) {
+function WeekIndexItem({targetDay, dayListOfMonthView}: { targetDay: DateTime, dayListOfMonthView: DayListOfMonthView }) {
     let dispatch = useAppDispatch();
     let selectedItem = useAppSelector(selectSelectedItem);
     const plugin = useContext(PluginContext)!;
+    const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+    // 根据ISO周号规则确定正确的年份：使用该周的周四来确定年份
+    // 因为ISO周号规则中，周四所在的年份决定了这一周属于哪一年
+    // 这样可以正确处理跨年的情况（例如：2025年12月29日所在的周，如果周四在2026年，则这一周属于2026年）
+    const thursday = targetDay.plus({days: 3});
+    // 直接使用周四的日期，它的年份和周号就是正确的（符合ISO周号规则）
+    let dateForWeeklyNote = thursday;
 
     let newSelectItem = new SelectedItem();
     newSelectItem.type = SelectedItemType.WEEK_INDEX_ITEM;
-    newSelectItem.date = targetDay;
+    newSelectItem.date = dateForWeeklyNote;
 
-    // 点击日期会更新已选中对象
+
+    // 点击日期会更新已选中对象（仍然使用targetDay用于显示和选择）
+    let clickSelectItem = new SelectedItem();
+    clickSelectItem.type = SelectedItemType.WEEK_INDEX_ITEM;
+    clickSelectItem.date = targetDay;
+
+    // 使用 ref 来跟踪是否发生了双击，防止双击时触发点击事件导致的视图切换
     const onClickCallback = (e: MouseEvent<HTMLDivElement>) => {
-        // 如果发生连击，只有第一次点击才会切换选中对象，并且能够避免干扰双击事件
-        if (e.detail === 1) {
-            dispatch(updateSelectedItem(newSelectItem));
+
+        // 清除之前的定时器
+        if (clickTimerRef.current) {
+            clearTimeout(clickTimerRef.current);
+            clickTimerRef.current = null;
+            return; // 如果之前有定时器，说明可能是双击，不处理点击事件
         }
+        // 延迟处理点击事件，如果在这期间发生双击，定时器会被清除
+        clickTimerRef.current = setTimeout(() => {
+            if (e.detail === 1) {
+                dispatch(updateSelectedItem(clickSelectItem));
+            }
+            clickTimerRef.current = null;
+        }, 200); // 200ms 延迟，足够检测双击
+    }
+
+    const onDoubleClickCallback = (e: MouseEvent<HTMLDivElement>) => {
+        // 清除点击事件的定时器，防止触发视图切换
+        if (clickTimerRef.current) {
+            clearTimeout(clickTimerRef.current);
+            clickTimerRef.current = null;
+        }
+        // 直接创建周记，不更新 selectedItem，避免视图切换
+        plugin.noteController.openNoteBySelectedItem(newSelectItem);
     }
 
     let itemStyle = "month-view-week-index-item d-unselected-item";
@@ -174,7 +208,7 @@ function WeekIndexItem({targetDay}: { targetDay: DateTime }) {
     }
 
     return <div className={itemStyle} onClick={onClickCallback}
-                onDoubleClick={() => plugin.noteController.openNoteBySelectedItem(newSelectItem)}>
+                onDoubleClick={onDoubleClickCallback}>
         <div>{targetDay.weekNumber}</div>
         <StatisticLabel date={DateTime.local(targetDay.year, targetDay.month, targetDay.day)}
                         noteType={NoteType.WEEKLY}/>
@@ -197,7 +231,7 @@ function MonthViewRow({
 
 
     return <div className='calendar-view-row'>
-        <WeekIndexItem targetDay={monday}/>
+        <WeekIndexItem targetDay={monday} dayListOfMonthView={dayListOfMonthView}/>
         <DayItem targetDay={monday} dayListOfMonthView={dayListOfMonthView}/>
         <DayItem targetDay={tuesday} dayListOfMonthView={dayListOfMonthView}/>
         <DayItem targetDay={wednesday} dayListOfMonthView={dayListOfMonthView}/>
