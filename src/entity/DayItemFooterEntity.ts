@@ -14,12 +14,15 @@ export class DayItemFooterEntity {
         // 优先显示节日
         let festivals = lunar.getFestivals();
         if (festivals.length !== 0) {
-            this.text = festivals[0];
-            if (this.text.length >= 3) {
-                this.text = this.text.substring(0, 2);
+            const festival = festivals[0];
+            if (festival) {
+                this.text = festival;
+                if (this.text.length >= 3) {
+                    this.text = this.text.substring(0, 2);
+                }
+                this.type = DayItemFooterType.FESTIVAL;
+                return;
             }
-            this.type = DayItemFooterType.FESTIVAL;
-            return;
         }
 
         // 次优先节气

@@ -16,6 +16,7 @@ import WordsPerDotInput from "./WordsPerDotInput";
 export default class MainSettingTab extends PluginSettingTab {
 
     private plugin: DustCalendarPlugin;
+    icon: string = "calendar-check";
     private fontSizeChangeModeSelectRoot: Root | null;
     private immutableFontSizeSliderRoot: Root | null;
     private quarterNameModeSelectRoot: Root | null;

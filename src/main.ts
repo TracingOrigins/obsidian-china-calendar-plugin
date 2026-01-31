@@ -113,15 +113,19 @@ export default class DustCalendarPlugin extends Plugin {
         let leaf: WorkspaceLeaf | null = null;
         const leaves = workspace.getLeavesOfType(VIEW_TYPE_CALENDAR);
         if (leaves.length > 0) {
-            leaf = leaves[0];
+            leaf = leaves[0] ?? null;
         }
         else {
             leaf = workspace.getRightLeaf(false);
-            await leaf.setViewState({type: VIEW_TYPE_CALENDAR, active: true});
+            if (leaf) {
+                await leaf.setViewState({type: VIEW_TYPE_CALENDAR, active: true});
+            }
         }
 
         // 显示视图
-        workspace.revealLeaf(leaf);
+        if (leaf) {
+            workspace.revealLeaf(leaf);
+        }
     }
 }
 
