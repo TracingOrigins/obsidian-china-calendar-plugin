@@ -188,8 +188,8 @@ export default class NoteController {
     public openNoteByFilename(filename: Path): void {
         const vault = this.plugin.app.vault;
         const file = vault.getAbstractFileByPath(filename.string);
-        if (file !== null) {
-            this.openNoteTabView(file as TFile);
+        if (file !== null && file instanceof TFile) {
+            this.openNoteTabView(file);
             return;
         }
 
@@ -199,16 +199,20 @@ export default class NoteController {
             modal.open();
         }
         else {
-            setTimeout(() => this.createNote(filename), 0);
+            setTimeout(() => {
+                void this.createNote(filename);
+            }, 0);
         }
     }
 
     public async createNote(filename: Path): Promise<void> {
         const abstractFile: TAbstractFile = await PathUtil.create(filename, this.plugin.app.vault);
-        this.openNoteTabView(abstractFile as TFile);
-        this.plugin.templateController.insertTemplate(this.noteType);
-        // 新建文件之后，需要更新统计信息
-        this.plugin.noteStatisticController.addTaskByFile(abstractFile);
+        if (abstractFile instanceof TFile) {
+            this.openNoteTabView(abstractFile);
+            this.plugin.templateController.insertTemplate(this.noteType);
+            // 新建文件之后，需要更新统计信息
+            this.plugin.noteStatisticController.addTaskByFile(abstractFile);
+        }
     }
 
     private openNoteTabView(tFile: TFile): void {
@@ -226,10 +230,9 @@ export default class NoteController {
         if (targetView === null) {
             targetView = new MarkdownView(this.plugin.app.workspace.getLeaf("tab"));
             const targetLeaf: WorkspaceLeaf = targetView.leaf;
-            targetLeaf.openFile(tFile).then(() => {
-            });
+            void targetLeaf.openFile(tFile);
         }
-        this.plugin.app.workspace.revealLeaf(targetView.leaf);
+        void this.plugin.app.workspace.revealLeaf(targetView.leaf);
         // 移动焦点到笔记编辑区域
         this.plugin.app.workspace.setActiveLeaf(targetView.leaf, {focus: true});
     }

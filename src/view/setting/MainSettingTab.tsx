@@ -57,7 +57,7 @@ export default class MainSettingTab extends PluginSettingTab {
         this.yearlyNoteTemplateRoot = null;
     }
 
-    display(): any {
+    display(): void {
         const {containerEl} = this;
         containerEl.empty();
         this.displayShouldDisplayLunarInfoToggle();
@@ -78,11 +78,11 @@ export default class MainSettingTab extends PluginSettingTab {
         this.displayNoteSetting(NoteType.YEARLY, "年度笔记", this.yearlyNotePatternRoot, this.yearlyNoteTemplateRoot);
     }
 
-    async hide(): Promise<any> {
-        await this.plugin.database.saveSetting();
+    hide(): void {
+        void this.plugin.database.saveSetting();
         this.plugin.calendarViewController.forceFlush();
         // this.plugin.flushCalendarView();
-        return super.hide();
+        super.hide();
     }
 
     private displayFontSizeChangeModeSelect(): void {

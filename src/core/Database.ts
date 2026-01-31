@@ -16,7 +16,10 @@ export default class Database {
     }
 
     public async loadSetting(): Promise<void> {
-        this.setting = Object.assign({}, this.setting, await this.plugin.loadData());
+        const data = await this.plugin.loadData() as Partial<PluginSetting> | null | undefined;
+        if (data) {
+            this.setting = Object.assign({}, this.setting, data);
+        }
     }
 
     public async saveSetting(): Promise<void> {

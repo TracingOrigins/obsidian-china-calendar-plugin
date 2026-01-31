@@ -42,11 +42,15 @@ export default class ViewController {
     }
 
     public parseQuarterName(quarterIndex: number): string {
-        return this.quarterNameMap?.get(quarterIndex)!;
+        const name = this.quarterNameMap.get(quarterIndex);
+        if (name === undefined) {
+            return "";
+        }
+        return name;
     }
 
     private updateQuarterNameMap() {
-        let newQuarterNameMap = new Map();
+        let newQuarterNameMap = new Map<number, string>();
         if (this.plugin.database.setting.quarterNameMode === QuarterNameMode.NUMBER) {
             newQuarterNameMap.set(1, "1季度");
             newQuarterNameMap.set(2, "2季度");

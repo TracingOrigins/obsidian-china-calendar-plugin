@@ -18,7 +18,7 @@ export default class PathUtil {
         // 指定的路径存在，不需要创建
         const abstractFile = vault.getAbstractFileByPath(path.string);
         if (abstractFile !== null) {
-            return abstractFile!;
+            return abstractFile;
         }
 
         // 递归，确保上级路径都存在

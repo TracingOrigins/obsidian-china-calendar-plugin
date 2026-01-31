@@ -47,7 +47,7 @@ export default class DustCalendarPlugin extends Plugin {
             id: "active-calendar-view",
             name: "打开日历视图",
             callback: () => {
-                DustCalendarPlugin.activateCalendarView(this);
+                void DustCalendarPlugin.activateCalendarView(this);
             }
         });
         this.addCommand({
@@ -102,7 +102,7 @@ export default class DustCalendarPlugin extends Plugin {
 
     // 关闭插件的时候执行释放资源的操作
     onunload() {
-        this.database.saveSetting();
+        void this.database.saveSetting();
         this.app.workspace.getLeavesOfType(VIEW_TYPE_CALENDAR).forEach((leaf) => leaf.detach());
     }
 
@@ -124,7 +124,7 @@ export default class DustCalendarPlugin extends Plugin {
 
         // 显示视图
         if (leaf) {
-            workspace.revealLeaf(leaf);
+            void workspace.revealLeaf(leaf);
         }
     }
 }

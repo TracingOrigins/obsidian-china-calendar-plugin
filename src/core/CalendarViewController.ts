@@ -1,4 +1,3 @@
-import {WorkspaceLeaf} from 'obsidian';
 import DustCalendarPlugin from "../main";
 import {CalendarView, VIEW_TYPE_CALENDAR} from "../view/CalendarView";
 

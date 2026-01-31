@@ -52,9 +52,9 @@ export default class ConfirmCreatingNoteModal extends Modal {
         );
     }
 
-    async onClose(): Promise<void> {
+    onClose(): void {
         if (this.shouldCreateNote) {
-            await this.plugin.noteController.createNote(this.filename);
+            void this.plugin.noteController.createNote(this.filename);
         }
     }
 

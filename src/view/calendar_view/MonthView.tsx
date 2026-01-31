@@ -155,7 +155,7 @@ function WeekIndexItem({targetDay, dayListOfMonthView}: { targetDay: DateTime, d
     let dispatch = useAppDispatch();
     let selectedItem = useAppSelector(selectSelectedItem);
     const plugin = useContext(PluginContext)!;
-    const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // 根据ISO周号规则确定正确的年份：使用该周的周四来确定年份
     // 因为ISO周号规则中，周四所在的年份决定了这一周属于哪一年
