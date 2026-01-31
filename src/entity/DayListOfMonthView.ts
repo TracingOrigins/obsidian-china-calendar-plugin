@@ -46,12 +46,20 @@ export default class DayListOfMonthView {
     }
 
     getDayByIndex(dayIndexInCurrentMonth: number): DateTime {
-        return this._dayList[dayIndexInCurrentMonth];
+        const day = this._dayList[dayIndexInCurrentMonth];
+        if (!day) {
+            throw new Error(`Day at index ${dayIndexInCurrentMonth} not found`);
+        }
+        return day;
     }
 
     getDayByWeek(weekIndexInCurrentMonth: number, weekEnum: WeekEnum): DateTime {
         let dayIndex = weekIndexInCurrentMonth * 7 + weekEnum.valueOf() - 1;
-        return this._dayList[dayIndex];
+        const day = this._dayList[dayIndex];
+        if (!day) {
+            throw new Error(`Day at index ${dayIndex} not found`);
+        }
+        return day;
     }
 
 

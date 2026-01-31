@@ -36,7 +36,11 @@ export class CalendarView extends ItemView {
 
     // 打开时的初始化操作
     async onOpen() {
-        this.root = createRoot(this.containerEl.children[1]);
+        const container = this.containerEl.children[1];
+        if (!container) {
+            throw new Error("Calendar container element not found");
+        }
+        this.root = createRoot(container);
         this.root.render(
             <StrictMode>
                 <PluginContext.Provider value={this.plugin}>

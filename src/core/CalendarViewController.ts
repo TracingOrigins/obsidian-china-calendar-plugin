@@ -41,11 +41,12 @@ export class CalendarViewController {
         const {workspace} = this.plugin.app;
 
         // 检查该类型的视图是否存在，如果不存在，则创建
-        let leaf: WorkspaceLeaf | null = null;
         const leaves = workspace.getLeavesOfType(VIEW_TYPE_CALENDAR);
         if (leaves.length > 0) {
-            leaf = leaves[0];
-            (leaf.view as CalendarView).flush();
+            const leaf = leaves[0];
+            if (leaf) {
+                (leaf.view as CalendarView).flush();
+            }
         }
     }
 
