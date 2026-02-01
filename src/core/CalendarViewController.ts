@@ -43,8 +43,11 @@ export class CalendarViewController {
         const leaves = workspace.getLeavesOfType(VIEW_TYPE_CALENDAR);
         if (leaves.length > 0) {
             const leaf = leaves[0];
-            if (leaf) {
-                (leaf.view as CalendarView).flush();
+            if (leaf && leaf.view) {
+                const view = leaf.view as CalendarView;
+                if (view && typeof view.flush === 'function') {
+                    view.flush();
+                }
             }
         }
     }
