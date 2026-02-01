@@ -95,6 +95,11 @@ export default class DustCalendarPlugin extends Plugin {
 
         this.addSettingTab(this.mainSettingTab);
 
+        // 添加左侧边栏图标
+        this.addRibbonIcon("calendar-check", "打开日历", () => {
+            void DustCalendarPlugin.activateCalendarView(this);
+        });
+
         if (this.app.workspace.layoutReady) {
             await DustCalendarPlugin.activateCalendarView(this);
         }
