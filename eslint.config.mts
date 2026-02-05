@@ -7,12 +7,13 @@ export default tseslint.config(
 		ignores: [
 			"node_modules/**",
 			"dist/**",
+			"scripts/**",
 			"esbuild.config.mjs",
-			"eslint.config.js",
+			"eslint.config.mjs",
 			"version-bump.mjs",
 			"versions.json",
+			"package.json",
 			"main.js",
-			"scripts/**",
 		],
 	},
 	{
@@ -25,7 +26,6 @@ export default tseslint.config(
 					allowDefaultProject: [
 						'eslint.config.js',
 						'manifest.json',
-						'scripts/copy-to-vault.js',
 					]
 				},
 				tsconfigRootDir: import.meta.dirname,
@@ -34,10 +34,4 @@ export default tseslint.config(
 		},
 	},
 	...obsidianmd.configs.recommended,
-	{
-		files: ["package.json"],
-		rules: {
-			"depend/ban-dependencies": "off",
-		},
-	},
 );

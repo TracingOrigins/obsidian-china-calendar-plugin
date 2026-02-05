@@ -5,11 +5,10 @@
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"dev": "node scripts/deploy.mjs dev && node esbuild.config.mjs",
+		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node scripts/deploy.mjs build",
 		"version": "node version-bump.mjs && git add manifest.json versions.json",
-		"lint": "eslint .",
-		"build:vault": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node scripts/copy-to-vault.js"
+		"lint": "eslint ."
 	},
 	"keywords": [],
 	"author": "Nano Dust (original), Kevin (maintainer)",
@@ -18,7 +17,6 @@
 		"@eslint/js": "9.30.1",
 		"@eslint/json": "0.14.0",
 		"@reduxjs/toolkit": "^2.2.1",
-		"@sprout2000/esbuild-copy-plugin": "^1.1.19",
 		"@types/luxon": "^3.4.2",
 		"@types/node": "^16.11.6",
 		"@types/react": "^18.2.55",
