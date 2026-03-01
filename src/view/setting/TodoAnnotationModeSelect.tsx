@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 
 
-export default function TodoAnnotationModeSelect({plugin}: { plugin: DustCalendarPlugin }) {
+export default function TodoAnnotationModeSelect({plugin}: { plugin: ChinaCalendarPlugin }) {
 
     const [todoAnnotationMode, setTodoAnnotationMode] = useState(plugin.noteStatisticController.getTodoAnnotationMode());
 

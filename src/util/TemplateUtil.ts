@@ -1,5 +1,5 @@
 import {TAbstractFile} from 'obsidian';
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import Path from "./Path";
 
 
@@ -8,9 +8,9 @@ import Path from "./Path";
  */
 export default class TemplateUtil {
 
-    public readonly plugin: DustCalendarPlugin;
+    public readonly plugin: ChinaCalendarPlugin;
 
-    constructor(plugin: DustCalendarPlugin) {
+    constructor(plugin: ChinaCalendarPlugin) {
         this.plugin = plugin;
     }
 

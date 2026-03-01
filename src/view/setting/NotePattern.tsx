@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from "react";
 import {DateTime} from "luxon";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 import {NoteType} from "../../base/enum";
 
 
-export default function NotePattern({plugin, noteType}: { plugin: DustCalendarPlugin, noteType: NoteType }) {
+export default function NotePattern({plugin, noteType}: { plugin: ChinaCalendarPlugin, noteType: NoteType }) {
 
     const [notePattern, setNotePattern] = useState(plugin.noteController.getNotePattern(noteType));
 
@@ -25,7 +25,7 @@ export default function NotePattern({plugin, noteType}: { plugin: DustCalendarPl
                     href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">luxon语法</a>&nbsp;指定笔记文件的生成路径。
                 </div>
                 {notePattern.length === 0
-                    ? <div className="d-setting-error">尚未配置文件命名规则，Dust Calendar 将无法为您创建笔记文件。</div>
+                    ? <div className="d-setting-error">China Calendar 将无法为您创建笔记文件。</div>
                     : <div>规则应用后的文件路径为（基于当前日期）：<b className="d-setting-accent">{text}</b></div>
                 }
                 <div><b>注意：</b>使用单引号可以进行转义，例如：yyyy 'year' MM 'month' dd 'day'

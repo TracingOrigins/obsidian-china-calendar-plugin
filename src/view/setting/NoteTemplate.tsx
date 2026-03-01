@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 import {NoteType} from "../../base/enum";
 
-export default function NoteTemplate({plugin, noteType}: { plugin: DustCalendarPlugin, noteType: NoteType }) {
+export default function NoteTemplate({plugin, noteType}: { plugin: ChinaCalendarPlugin, noteType: NoteType }) {
 
 
     const [templateFilename, setTemplateFilename] = useState(plugin.templateController.getTemplateFilename(noteType)!);

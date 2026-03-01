@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 import {TemplatePlugin} from "../../base/enum";
 
 
-export default function TemplatePluginSelect({plugin}: { plugin: DustCalendarPlugin }) {
+export default function TemplatePluginSelect({plugin}: { plugin: ChinaCalendarPlugin }) {
 
     const [templatePlugin, setTemplatePlugin] = useState(plugin.database.setting.templatePlugin);
 

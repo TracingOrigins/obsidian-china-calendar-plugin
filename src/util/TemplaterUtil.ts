@@ -1,6 +1,6 @@
 import {TAbstractFile, App} from 'obsidian';
 import TemplateUtil from "./TemplateUtil";
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import Path from "./Path";
 
 // 定义 Templater 插件类型
@@ -25,7 +25,7 @@ interface AppWithPlugins extends App {
 }
 
 export default class TemplaterUtil extends TemplateUtil {
-	constructor(plugin: DustCalendarPlugin) {
+	constructor(plugin: ChinaCalendarPlugin) {
 		super(plugin);
 	}
 

@@ -1,5 +1,5 @@
 import {TAbstractFile, App} from 'obsidian';
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import Path from "./Path";
 import TemplateUtil from "./TemplateUtil";
 
@@ -24,7 +24,7 @@ interface AppWithInternalPlugins extends App {
 
 export default class ObsidianTemplateUtil extends TemplateUtil {
 
-	constructor(plugin: DustCalendarPlugin) {
+	constructor(plugin: ChinaCalendarPlugin) {
 		super(plugin);
 	}
 

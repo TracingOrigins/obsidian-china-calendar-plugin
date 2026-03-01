@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 
 
-export default function QuarterNameModeSelect({plugin}: { plugin: DustCalendarPlugin }) {
+export default function QuarterNameModeSelect({plugin}: { plugin: ChinaCalendarPlugin }) {
 
     const [quarterNameMode, setQuarterNameMode] = useState(plugin.viewController.getQuarterNameMode());
 

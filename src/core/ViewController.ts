@@ -1,4 +1,4 @@
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import {FontSizeChangeMode, QuarterNameMode} from "../base/enum";
 
 
@@ -7,10 +7,10 @@ import {FontSizeChangeMode, QuarterNameMode} from "../base/enum";
  */
 export default class ViewController {
 
-    public readonly plugin: DustCalendarPlugin;
+    public readonly plugin: ChinaCalendarPlugin;
     private quarterNameMap: Map<number, string>;
 
-    constructor(plugin: DustCalendarPlugin) {
+    constructor(plugin: ChinaCalendarPlugin) {
         this.plugin = plugin;
         this.quarterNameMap = new Map;
         this.updateQuarterNameMap();

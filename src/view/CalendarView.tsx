@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import {ItemView, WorkspaceLeaf} from "obsidian";
 import {store} from "./redux/store";
 import CalendarViewImpl from "./calendar_view/CalendarViewImpl";
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import {PluginContext} from "./context";
 
 
@@ -13,11 +13,11 @@ export const VIEW_TYPE_CALENDAR = "calendar-view";
 
 export class CalendarView extends ItemView {
 
-    private readonly plugin: DustCalendarPlugin;
+    private readonly plugin: ChinaCalendarPlugin;
     // private readonly mainController: MainController;
     private root: Root | null = null;
 
-    constructor(leaf: WorkspaceLeaf, plugin: DustCalendarPlugin) {
+    constructor(leaf: WorkspaceLeaf, plugin: ChinaCalendarPlugin) {
         // constructor(leaf: WorkspaceLeaf, mainController: MainController) {
         super(leaf);
         this.plugin = plugin;

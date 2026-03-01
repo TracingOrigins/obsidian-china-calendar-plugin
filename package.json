@@ -1,6 +1,6 @@
 {
 	"name": "china-calendar",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "a calendar plugin for obsidian",
 	"main": "main.js",
 	"type": "module",

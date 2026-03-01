@@ -1,4 +1,4 @@
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import {CalendarView, VIEW_TYPE_CALENDAR} from "../view/CalendarView";
 
 
@@ -8,11 +8,11 @@ import {CalendarView, VIEW_TYPE_CALENDAR} from "../view/CalendarView";
  */
 export class CalendarViewController {
 
-    public readonly plugin: DustCalendarPlugin;
+    public readonly plugin: ChinaCalendarPlugin;
     private requestCounter: number;                             // 请求刷新的次数
     private lastRequestTime: number;                            // 上次请求时间
 
-    constructor(plugin: DustCalendarPlugin) {
+    constructor(plugin: ChinaCalendarPlugin) {
         this.plugin = plugin;
         this.requestCounter = 0;
         this.lastRequestTime = 0;

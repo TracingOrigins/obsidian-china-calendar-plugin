@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 
 
-export default function WordsPerDotInput({plugin}: { plugin: DustCalendarPlugin }) {
+export default function WordsPerDotInput({plugin}: { plugin: ChinaCalendarPlugin }) {
 
     const [wordsPerDot, setWordsPerDot] = useState<number | string>(plugin.noteStatisticController.getWordsPerDot());
 

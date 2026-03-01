@@ -1,7 +1,7 @@
 import {PluginSettingTab, Setting} from "obsidian";
 import {createRoot, Root} from "react-dom/client";
 import {FontSizeChangeMode, NoteType, TemplatePlugin} from "../../base/enum";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 import ImmutableFontSizeSlider from "./ImmutableFontSizeSlider";
 import FontSizeChangeModeSelect from "./FontSizeChangeModeSelect";
 import QuarterNameModeSelect from "./QuarterNameModeSelect";
@@ -15,7 +15,7 @@ import WordsPerDotInput from "./WordsPerDotInput";
 
 export default class MainSettingTab extends PluginSettingTab {
 
-    private plugin: DustCalendarPlugin;
+    private plugin: ChinaCalendarPlugin;
     icon: string = "calendar-check";
     private fontSizeChangeModeSelectRoot: Root | null;
     private immutableFontSizeSliderRoot: Root | null;
@@ -35,7 +35,7 @@ export default class MainSettingTab extends PluginSettingTab {
     private yearlyNotePatternRoot: Root | null;
     private yearlyNoteTemplateRoot: Root | null;
 
-    constructor(plugin: DustCalendarPlugin) {
+    constructor(plugin: ChinaCalendarPlugin) {
         super(plugin.app, plugin);
         this.plugin = plugin;
         this.fontSizeChangeModeSelectRoot = null;

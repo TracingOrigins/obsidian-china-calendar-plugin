@@ -2,7 +2,7 @@ import {TAbstractFile} from 'obsidian';
 import {NoteType, TemplatePlugin} from "../base/enum";
 import Path from "../util/Path";
 import PathUtil from "../util/PathUtil";
-import DustCalendarPlugin from "../main";
+import ChinaCalendarPlugin from "../main";
 import TemplateUtil from "../util/TemplateUtil";
 import ObsidianTemplateUtil from "../util/ObsidianTemplateUtil";
 import TemplaterUtil from "../util/TemplaterUtil";
@@ -13,10 +13,10 @@ import TemplaterUtil from "../util/TemplaterUtil";
  */
 export default class TemplateController {
 
-    public readonly plugin: DustCalendarPlugin;
+    public readonly plugin: ChinaCalendarPlugin;
     public templateUtil: TemplateUtil;
 
-    constructor(plugin: DustCalendarPlugin) {
+    constructor(plugin: ChinaCalendarPlugin) {
         this.plugin = plugin;
         this.templateUtil = new TemplateUtil(this.plugin);
     }

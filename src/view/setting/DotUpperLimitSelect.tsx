@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
-import DustCalendarPlugin from "../../main";
+import ChinaCalendarPlugin from "../../main";
 
 
-export default function DotUpperLimitSelect({plugin}: { plugin: DustCalendarPlugin }) {
+export default function DotUpperLimitSelect({plugin}: { plugin: ChinaCalendarPlugin }) {
 
     const [dotUpperLimit, setDotUpperLimit] = useState(plugin.noteStatisticController.getDotUpperLimit());
 
